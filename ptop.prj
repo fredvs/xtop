@@ -707,11 +707,11 @@ findhistory=8
  ,capital
 findoptions=1
 editpos=6
+ 0,189
  0,-1073741823
  0,-1073741823
  0,-1073741823
- 0,6
- 0,101
+ 0,-1073741823
  0,1442
 bookmarks0=0
 bookmarks1=0
@@ -746,7 +746,7 @@ visiblemodules=0
 nomenumodules=0
 [sourcefo.files_tab]
 firsttab=0
-index=5
+index=0
 [layout]
 windowlayout=529
  [mainfo.basedock]
@@ -1195,10 +1195,10 @@ windowlayout=529
  [debuggerfo.edit_compiler]
  value=Pascal
  [debuggerfo.file_history]
- value=/home/fred/fptop/ptopu.pas
+ value=/home/fred/fptop/ptop.pas
  history=20
-  /home/fred/ideu_bin/ideu_1.9.8_linux64/plugin/ptop/ptop.cfg
   /home/fred/fptop/ptopu.pas
+  /home/fred/ideu_bin/ideu_1.9.8_linux64/plugin/ptop/ptop.cfg
   /home/fred/fptop/ptopu.pp
   /home/fred/svnfpctrunk/trunk/utils/ptopu.pp
   /home/fred/fptop/ptop.cfg
@@ -1239,7 +1239,7 @@ windowlayout=529
  rcy=0
  [sourcefo.files_tab]
  firsttab=0
- index=5
+ index=0
  [confideufo.usedefaulteditoroptions]
  value=0
  [cpuc86_64fo]

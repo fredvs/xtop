@@ -1,12 +1,7 @@
 {$mode objfpc}
 {$H+}
 
-Program PtoP;
-
-
-
-
-
+program PtoP;
 {
     This file is part of the Free Pascal run time library.
     Copyright (c) 1999-2002 by Michael Van Canneyt, member of
@@ -23,183 +18,172 @@ Program PtoP;
 
  **********************************************************************}
 
-
-uses 
-SysUtils,
-Classes,
-PtoPu,
-CustApp,
-BufStream;
+uses
+  SysUtils,
+  Classes,
+  PtoPu,
+  CustApp,
+  BufStream;
 
 resourcestring
-Version = 'Version 1.2';
-ATitle = 'PToP';
-Copyright = 'Copyright (c) 1999-2005 by the Free Pascal Development Team';
-SErrNoInputOutput = 'No input and output file given';
+  Version   = 'Version 1.2';
+  ATitle    = 'PToP';
+  Copyright = 'Copyright (c) 1999-2005 by the Free Pascal Development Team';
+  SErrNoInputOutput = 'No input and output file given';
 
-Type 
-  TPToP = Class(TCustomApplication)
-    Private 
-      Infilename,
-    OutFileName,
-    ConfigFile: string;
-    BeVerbose: boolean;
-    TheIndent,
-    TheBufSize,
-    TheLineSize: integer;
-    Procedure Usage(ECode: word);
-    Procedure GenOpts;
-    Procedure ProcessOpts;
-    Procedure DoVerbose(Sender: TObject; Const Msg: String);
-    Public 
-      Procedure DoRun;
+type
+  TPToP = class(TCustomApplication)
+  private
+    Infilename, OutFileName, ConfigFile: string;
+    BeVerbose: Boolean;
+    TheIndent, TheBufSize, TheLineSize: integer;
+    procedure Usage(ECode: word);
+    procedure GenOpts;
+    procedure ProcessOpts;
+    procedure DoVerbose(Sender: TObject; const Msg: string);
+  public
+    procedure DoRun;
       override;
-  End;
+  end;
 
+  procedure TPToP.DoVerbose(Sender: TObject; const Msg: string);
+  begin
+    writeLn(StdErr, Msg);
+  end;
 
-Procedure TPToP.DoVerbose(Sender: TObject; Const Msg: String);
+  procedure TPToP.Usage(ECode: word);
+  begin
+    writeLn('ptop : Usage : ');
+    writeLn('ptop [-v] [-i indent] [-b bufsize ][-c optsfile][-l linesize] infile outfile');
+    writeLn('     converts infile to outfile.');
+    writeLn('     -c : read options from optsfile');
+    writeLn('     -i : Set number of indent spaces.');
+    writeLn('     -l : Set maximum output linesize.');
+    writeLn('     -b : Use buffers of size bufsize');
+    writeLn('     -v : be verbose');
+    writeLn('ptop -g ofile');
+    writeLn('     generate default options file');
+    writeLn('ptop -h : This help');
+    halt(Ecode);
+  end;
 
-begin
-  writeLn(StdErr,Msg);
-End;
+  procedure TPToP.Genopts;
+  var
+    S: TFileStream;
+  begin
+    S := TFileStream.Create(ConfigFile, fmCreate);
+    try
+      GeneratecfgFile(S);
+    finally
+      S.Free;
+    end;
+  end;
 
-Procedure TPToP.Usage(ECode: word);
-
-begin
-  writeLn('ptop : Usage : ');
-  writeLn('ptop [-v] [-i indent] [-b bufsize ][-c optsfile][-l linesize] infile outfile');
-  writeLn('     converts infile to outfile.');
-  writeLn('     -c : read options from optsfile');
-  writeLn('     -i : Set number of indent spaces.');
-  writeLn('     -l : Set maximum output linesize.');
-  writeLn('     -b : Use buffers of size bufsize');
-  writeLn('     -v : be verbose');
-  writeLn('ptop -g ofile');
-  writeLn('     generate default options file');
-  writeLn('ptop -h : This help');
-  halt(Ecode);
-End;
-
-Procedure TPToP.Genopts;
-
-Var 
-  S: TFileStream;
-
-begin
-  S := TFileStream.Create(ConfigFile, fmCreate);
-  Try
-    GeneratecfgFile(S);
-  Finally
-    S.Free;
-End;
-End;
-
-Procedure TPToP.ProcessOpts;
-
-Var 
-  S: string;
-begin
-  { Set defaults }
-  Infilename := '';
-  OutFileName := '';
-  ConfigFile := '';
-  TheIndent := 2;
-  TheBufSize := 255;
-  TheLineSize := DefLineSize;
-  BeVerbose := false;
-  S := CheckOptions('icglbhv', '');
-  If (S <> '') Then
+  procedure TPToP.ProcessOpts;
+  var
+    S: string;
+  begin
+    { Set defaults }
+    Infilename  := '';
+    OutFileName := '';
+    ConfigFile  := '';
+    TheIndent   := 2;
+    TheBufSize  := 255;
+    TheLineSize := DefLineSize;
+    BeVerbose   := False;
+    S           := CheckOptions('icglbhv', '');
+    if (S <> '') then
     begin
       writeLn(stderr, S);
       Usage(1);
-    End;
-  If HasOption('h') Then usage(0);
-  TheIndent := StrToIntDef(GetOptionValue('i', ''), 2);
-  TheBufSize := StrToIntDef(GetOptionValue('b', ''), 255);
-  TheLineSize := StrToIntDef(GetOptionValue('l', ''), DefLineSize);
-  If HasOption('g') Then
+    end;
+    if HasOption('h') then
+      usage(0);
+    TheIndent   := StrToIntDef(GetOptionValue('i', ''), 2);
+    TheBufSize  := StrToIntDef(GetOptionValue('b', ''), 255);
+    TheLineSize := StrToIntDef(GetOptionValue('l', ''), DefLineSize);
+    if HasOption('g') then
     begin
       ConfigFile := GetOptionValue('g', '');
       GenOpts;
       halt(0);
-    End;
-  ConfigFile := GetOptionValue('c', '');
-  BeVerbose := HasOption('v');
-  If (ParamCount > 1) Then
+    end;
+    ConfigFile := GetOptionValue('c', '');
+    BeVerbose  := HasOption('v');
+    if (ParamCount > 1) then
     begin
-      InFileName := paramstr(ParamCount - 1);
-      OutFilename := Paramstr(ParamCount);
-    End;
-End; { Of ProcessOpts }
+      InFileName  := ParamStr(ParamCount - 1);
+      OutFilename := ParamStr(ParamCount);
+    end;
+  end; { Of ProcessOpts }
 
-Procedure TPToP.DoRun;
-
-Var 
-  F,
-  InS,
-  OutS,
-  cfgS: TSTream;
-  PPrinter: TPrettyPrinter;
-
-begin
-  ProcessOpts;
-  If BeVerbose Then
+  procedure TPToP.DoRun;
+  var
+    F, InS, OutS, cfgS: TSTream;
+    PPrinter: TPrettyPrinter;
+  begin
+    ProcessOpts;
+    if BeVerbose then
     begin
       writeLn(Title + ' ' + Version);
       writeLn(Copyright);
       writeLn;
-    End;
-  If (Length(InfileName) = 0) Or (Length(OutFileName) = 0) Then
+    end;
+    if (Length(InfileName) = 0) or (Length(OutFileName) = 0) then
     begin
       writeLn(stderr, SErrNoInputOutput);
       Usage(1);
-    End;
-  Ins := TMemoryStream.Create;
-  Try
-    F := TFileStream.Create(InFileName, fmOpenRead);
-    Try
-      Ins.CopyFrom(F, 0);
-      Ins.Position := 0;
-    Finally
-      F.Free;
-End;
-OutS := TwriteBufStream.Create(TFileStream.Create(OutFileName, fmCreate));
-Try
-  If ConfigFile <> '' Then CfgS := TFileStream.Create(ConfigFile, fmOpenRead)
-  Else CfgS := Nil;
-  Try
-    PPrinter := TPrettyPrinter.Create;
-    Try
-      PPrinter.Indent := TheIndent;
-      PPrinter.LineSize := TheLineSize;
-      PPrinter.Source := Ins;
-      PPrinter.Dest := OutS;
-      PPrinter.Config := CfgS;
-      If BeVerbose Then PPrinter.OnVerbose := @DoVerbose;
-      PPrinter.PrettyPrint;
-    Finally
-      FreeAndNil(PPrinter);
-End;
-Finally
-  FreeAndNil(CfgS);
-End;
-Finally
-  FreeAndNil(OutS);
-End;
-Finally
-  FreeAndNil(Ins);
-End;
-Terminate;
-End;
+    end;
+    Ins := TMemoryStream.Create;
+    try
+      F := TFileStream.Create(InFileName, fmOpenRead);
+      try
+        Ins.CopyFrom(F, 0);
+        Ins.Position := 0;
+      finally
+        F.Free;
+      end;
+      OutS := TwriteBufStream.Create(TFileStream.Create(OutFileName, fmCreate));
+      try
+        if ConfigFile <> '' then
+          CfgS     := TFileStream.Create(ConfigFile, fmOpenRead)
+        else
+          CfgS     := nil;
+        try
+          PPrinter := TPrettyPrinter.Create;
+          try
+            PPrinter.Indent := TheIndent;
+            PPrinter.LineSize := TheLineSize;
+            PPrinter.Source := Ins;
+            PPrinter.Dest   := OutS;
+            PPrinter.Config := CfgS;
+            if BeVerbose then
+              PPrinter.OnVerbose := @DoVerbose;
+            PPrinter.PrettyPrint;
+          finally
+            FreeAndNil(PPrinter);
+          end;
+        finally
+          FreeAndNil(CfgS);
+        end;
+      finally
+        FreeAndNil(OutS);
+      end;
+    finally
+      FreeAndNil(Ins);
+    end;
+    Terminate;
+  end;
 
 begin
-  With TPToP.Create(Nil) Do
-    Try
-      Title := ATitle;
-      StopOnException := true;
+  with TPToP.Create(nil) do
+    try
+      Title           := ATitle;
+      StopOnException := True;
       Initialize;
       Run;
-    Finally
+    finally
       Free;
-End;
-End.
+    end;
+end.
+
