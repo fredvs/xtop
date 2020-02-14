@@ -1,7 +1,7 @@
 xtop is a suite of configurable source beautifiers.
 
 jtop is a beautifier for java sources.
-jtop is bases on ptop.
+jtop is based on ptop.
 
 ptop is a beautifier for pascal  sources, specially the ones supported by FPC.
 ptop  belongs  to  the  FPC utils package.
