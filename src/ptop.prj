@@ -17,8 +17,50 @@ order14=0
 order15=0
 order16=0
 [projectoptions]
-projectdir=/home/fred/fptop
-projectfilename=/home/fred/fptop/ptop.prj
+projectdir=/home/fred/xtop/src
+projectfilename=/home/fred/xtop/src/ptop.prj
+findinfiledialog=41
+ [findinfileadialogfo.subdirs]
+ value=1
+ [findinfileadialogfo.incurrentfile]
+ value=0
+ [findinfileadialogfo.inopenfiles]
+ value=0
+ [findinfileadialogfo.wholeword]
+ value=0
+ [findinfileadialogfo.inprojectdir]
+ value=0
+ [findinfileadialogfo.casesensitive]
+ value=0
+ [findinfileadialogfo.indirectories]
+ value=1
+ [findinfileadialogfo.mask]
+ value="*.pas" "*.pp" "*.inc"
+ history=1
+  "*.pas" "*.pp" "*.inc"
+ [findinfileadialogfo.dir]
+ filenames=1
+  /home/fred/svnfpctrunk/
+ filecolwidth=174
+ x=0
+ y=0
+ cx=0
+ cy=0
+ filehistory=1
+  /home/fred/svnfpctrunk/
+ filefilterindex=0
+ filefilter="*.pas" "*.pp" "*.inc"
+ [findinfileadialogfo.findtext]
+ value=ptop
+ history=2
+  ptop
+  
+ [findinfileadialogfo]
+ stackedunder=
+ x=268
+ y=415
+ cx=339
+ cy=275
 finddialog=8
  [finddialogfo.selectedonly]
  value=0
@@ -177,7 +219,7 @@ befcommand=0
 aftcommand=0
 makeoptions=5
  -l -Mobjfpc -Sh -Fcutf8
- -gl -O-
+ -ghl -O-
  -B
  -FUunits
  -O2 -XX -CX -Xs
@@ -401,7 +443,7 @@ modulefiles=0
 befcommandon=0
 makeoptionson=5
  4095
- 4091
+ 4095
  4095
  62
  63
@@ -695,8 +737,10 @@ envvarons=0
 [edit]
 hintwidth=0
 hintheight=0
-finddtext=array
-findhistory=8
+finddtext=usage
+findhistory=10
+ usage
+ us
  array
  capital
  colon
@@ -706,34 +750,39 @@ findhistory=8
  openparen
  ,capital
 findoptions=1
-editpos=6
- 0,189
+editpos=7
+ 0,68
+ 0,4
  0,-1073741823
  0,-1073741823
  0,-1073741823
  0,-1073741823
- 0,1442
+ 0,124
 bookmarks0=0
 bookmarks1=0
 bookmarks2=0
 bookmarks3=0
 bookmarks4=0
 bookmarks5=0
-sourcefiles=6
- ${PROJECTDIR}/ptop.pas
+bookmarks6=0
+sourcefiles=7
+ /home/fred/xtop/src/ptop.pas
  /home/fred/ptoptest/main.pas
  /home/fred/ptoptest/uos.pas
  ${PROJECTDIR}/ptop.cfg
  /home/fred/ideu_bin/ideu_1.9.8_linux64/plugin/ptop/ptop.cfg
  ${PROJECTDIR}/ptopu.pas
-relpaths=6
+ /home/fred/svnfpctrunk/trunk/utils/ptop.pp
+relpaths=7
  ptop.pas
- ptoptest/main.pas
+ ../ptoptest/main.pas
  ptoptest/uos.pas
  ptop.cfg
  ideu_bin/ideu_1.9.8_linux64/plugin/ptop/ptop.cfg
  ptopu.pas
-ismoduletexts=6
+ ../svnfpctrunk/trunk/utils/ptop.pp
+ismoduletexts=7
+ 0
  0
  0
  0
@@ -745,10 +794,18 @@ moduleoptions=0
 visiblemodules=0
 nomenumodules=0
 [sourcefo.files_tab]
+order=7
+ 0
+ 6
+ 1
+ 2
+ 3
+ 4
+ 5
 firsttab=0
 index=0
 [layout]
-windowlayout=529
+windowlayout=555
  [mainfo.basedock]
  splitdir=2
  useroptions=268450944
@@ -788,7 +845,7 @@ windowlayout=529
  rcy=0
  wsize=0
  active=0
- visible=1
+ visible=0
  [threadsfo]
  splitdir=0
  useroptions=268451945
@@ -856,7 +913,7 @@ windowlayout=529
  [findinfilefo]
  splitdir=0
  useroptions=268451947
- stackedunder=
+ stackedunder=mainfo
  parent=
  mdistate=0
  nx=0
@@ -1017,7 +1074,25 @@ windowlayout=529
  visible=0
  [symbolfo.grid]
  propcolwidthref=207
- values0=0
+ values0=18
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
  width0=111
  sortdescend0=0
  width1=125
@@ -1195,8 +1270,9 @@ windowlayout=529
  [debuggerfo.edit_compiler]
  value=Pascal
  [debuggerfo.file_history]
- value=/home/fred/fptop/ptop.pas
+ value=/home/fred/xtop/src/ptop.pas
  history=20
+  /home/fred/xtop/src/ptop.pas
   /home/fred/fptop/ptopu.pas
   /home/fred/ideu_bin/ideu_1.9.8_linux64/plugin/ptop/ptop.cfg
   /home/fred/fptop/ptopu.pp
@@ -1216,7 +1292,6 @@ windowlayout=529
   /home/fred/ideu/src/plugmanager_ok.pas
   /home/fred/ideu/src/ideusettings.pas
   /home/fred/Downloads/eschecs-console-master/library/tutorial/movelistdemo.pas
-  /home/fred/Downloads/eschecs-console-master/library/tutorial/fendemo.pas
  [debuggerfo.project_options]
  value=1
  [debuggerfo.hints]
@@ -1238,6 +1313,14 @@ windowlayout=529
  rcx=0
  rcy=0
  [sourcefo.files_tab]
+ order=7
+  0
+  6
+  1
+  2
+  3
+  4
+  5
  firsttab=0
  index=0
  [confideufo.usedefaulteditoroptions]
@@ -1246,7 +1329,7 @@ windowlayout=529
  irqoff=0
  splitdir=0
  useroptions=268451947
- stackedunder=targetconsolefo
+ stackedunder=findinfilefo
  parent=
  mdistate=0
  nx=0
