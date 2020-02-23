@@ -4,20 +4,9 @@
 program jtop;
 
 {
-    This file is part of the Free Pascal run time library.
-    Copyright (c) 1999-2002 by Michael Van Canneyt, member of
-    the Free Pascal development team
+    This file is based on ptop an Pascal pretty print program.
 
-    Pascal pretty print program
-
-    See the file COPYING.FPC, included in this distribution,
-    for details about the copyright.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
- **********************************************************************}
+}
 
 uses
   SysUtils,
@@ -27,16 +16,16 @@ uses
   BufStream;
 
 resourcestring
-  Version = 'Version 1.0';
-  ATitle = 'JToP';
-  Copyright = 'Copyright (c) 1999-2005 by the Free Pascal Development Team and FredvS';
+  Version   = 'Version 1.0';
+  ATitle    = 'JToP';
+  Copyright = 'Copyright (c) 1999-2020 by the Free Pascal Development Team and FredvS';
   SErrNoInputOutput = 'No input and output file given';
 
 type
   Tjtop = class(TCustomApplication)
   private
     Infilename, OutFileName, ConfigFile: string;
-    BeVerbose: boolean;
+    BeVerbose: Boolean;
     TheIndent, TheBufSize, TheLineSize: integer;
     procedure Usage(ECode: word);
     procedure GenOpts;
@@ -47,81 +36,81 @@ type
       override;
   end;
 
-procedure Tjtop.DoVerbose(Sender: TObject; const Msg: string);
-begin
-  writeLn(StdErr, Msg);
-end;
-
-procedure Tjtop.Usage(ECode: word);
-begin
-  writeLn('jtop : Usage : ');
-  writeLn('jtop [-v] [-i indent] [-b bufsize ][-c optsfile][-l linesize] infile outfile');
-  writeLn('     converts infile to outfile.');
-  writeLn('     -c : read options from optsfile');
-  writeLn('     -i : Set number of indent spaces.');
-  writeLn('     -l : Set maximum output linesize.');
-  writeLn('     -b : Use buffers of size bufsize');
-  writeLn('     -v : be verbose');
-  writeLn('jtop -g ofile');
-  writeLn('     generate default options file');
-  writeLn('jtop -h : This help');
-  terminate;
-end;
-
-procedure Tjtop.Genopts;
-var
-  S: TFileStream;
-begin
-  S := TFileStream.Create(ConfigFile, fmCreate);
-  try
-    GeneratecfgFile(S);
-  finally
-    S.Free;
-  end;
-end;
-
-procedure Tjtop.ProcessOpts;
-var
-  S: string;
-begin
-  { Set defaults }
-  Infilename := '';
-  OutFileName := '';
-  ConfigFile := '';
-  TheIndent := 2;
-  TheBufSize := 255;
-  TheLineSize := DefLineSize;
-  BeVerbose := false;
-  S := CheckOptions('icglbhv', '');
-  if (S <> '') then
+  procedure Tjtop.DoVerbose(Sender: TObject; const Msg: string);
   begin
-    writeLn(stderr, S);
-    Usage(1);
+    writeLn(StdErr, Msg);
   end;
-  if HasOption('h') then usage(0);
-  TheIndent := StrToIntDef(GetOptionValue('i', ''), 2);
-  TheBufSize := StrToIntDef(GetOptionValue('b', ''), 255);
-  TheLineSize := StrToIntDef(GetOptionValue('l', ''), DefLineSize);
-  if HasOption('g') then
-  begin
-    ConfigFile := GetOptionValue('g', '');
-    GenOpts;
-    halt(0);
-  end;
-  ConfigFile := GetOptionValue('c', '');
-  BeVerbose := HasOption('v');
-  if (ParamCount > 1) then
-  begin
-    InFileName := ParamStr(ParamCount - 1);
-    OutFilename := ParamStr(ParamCount);
-  end;
-end; { Of ProcessOpts }
 
-procedure Tjtop.DoRun;
+  procedure Tjtop.Usage(ECode: word);
+  begin
+    writeLn('jtop : Usage : ');
+    writeLn('jtop [-v] [-i indent] [-b bufsize ][-c optsfile][-l linesize] infile outfile');
+    writeLn('     converts infile to outfile.');
+    writeLn('     -c : read options from optsfile');
+    writeLn('     -i : Set number of indent spaces.');
+    writeLn('     -l : Set maximum output linesize.');
+    writeLn('     -b : Use buffers of size bufsize');
+    writeLn('     -v : be verbose');
+    writeLn('jtop -g ofile');
+    writeLn('     generate default options file');
+    writeLn('jtop -h : This help');
+    terminate;
+  end;
+
+  procedure Tjtop.Genopts;
+  var
+    S: TFileStream;
+  begin
+    S := TFileStream.Create(ConfigFile, fmCreate);
+    try
+      GeneratecfgFile(S);
+    finally
+      S.Free;
+    end;
+  end;
+
+  procedure Tjtop.ProcessOpts;
+  var
+    S: string;
+  begin
+    { Set defaults }
+    Infilename  := '';
+    OutFileName := '';
+    ConfigFile  := '';
+    TheIndent   := 2;
+    TheBufSize  := 255;
+    TheLineSize := DefLineSize;
+    BeVerbose   := False;
+    S           := CheckOptions('icglbhv', '');
+    if (S <> '') then
+    begin
+      writeLn(stderr, S);
+      Usage(1);
+    end;
+    if HasOption('h') then
+      usage(0);
+    TheIndent   := StrToIntDef(GetOptionValue('i', ''), 2);
+    TheBufSize  := StrToIntDef(GetOptionValue('b', ''), 255);
+    TheLineSize := StrToIntDef(GetOptionValue('l', ''), DefLineSize);
+    if HasOption('g') then
+    begin
+      ConfigFile := GetOptionValue('g', '');
+      GenOpts;
+      halt(0);
+    end;
+    ConfigFile := GetOptionValue('c', '');
+    BeVerbose  := HasOption('v');
+    if (ParamCount > 1) then
+    begin
+      InFileName  := ParamStr(ParamCount - 1);
+      OutFilename := ParamStr(ParamCount);
+    end;
+  end; { Of ProcessOpts }
+
+  procedure Tjtop.DoRun;
   var
     F, InS, OutS, cfgS: TSTream;
     PPrinter: TPrettyPrinter;
-    S: string;
   begin
     ProcessOpts;
     if BeVerbose then
@@ -186,11 +175,12 @@ procedure Tjtop.DoRun;
 begin
   with Tjtop.Create(nil) do
     try
-      Title := ATitle;
-      StopOnException := true;
+      Title           := ATitle;
+      StopOnException := True;
       Initialize;
       Run;
     finally
       Free;
     end;
 end.
+

@@ -750,43 +750,18 @@ findhistory=10
  openparen
  ,capital
 findoptions=1
-editpos=7
- 0,68
- 0,4
- 0,-1073741823
- 0,-1073741823
- 0,-1073741823
- 0,-1073741823
+editpos=2
  0,124
+ 0,4
 bookmarks0=0
 bookmarks1=0
-bookmarks2=0
-bookmarks3=0
-bookmarks4=0
-bookmarks5=0
-bookmarks6=0
-sourcefiles=7
- /home/fred/xtop/src/ptop.pas
- /home/fred/ptoptest/main.pas
- /home/fred/ptoptest/uos.pas
- ${PROJECTDIR}/ptop.cfg
- /home/fred/ideu_bin/ideu_1.9.8_linux64/plugin/ptop/ptop.cfg
+sourcefiles=2
+ ${PROJECTDIR}/ptop.pas
  ${PROJECTDIR}/ptopu.pas
- /home/fred/svnfpctrunk/trunk/utils/ptop.pp
-relpaths=7
+relpaths=2
  ptop.pas
- ../ptoptest/main.pas
- ptoptest/uos.pas
- ptop.cfg
- ideu_bin/ideu_1.9.8_linux64/plugin/ptop/ptop.cfg
  ptopu.pas
- ../svnfpctrunk/trunk/utils/ptop.pp
-ismoduletexts=7
- 0
- 0
- 0
- 0
- 0
+ismoduletexts=2
  0
  0
 modules=0
@@ -794,18 +769,10 @@ moduleoptions=0
 visiblemodules=0
 nomenumodules=0
 [sourcefo.files_tab]
-order=7
- 0
- 6
- 1
- 2
- 3
- 4
- 5
 firsttab=0
 index=0
 [layout]
-windowlayout=555
+windowlayout=547
  [mainfo.basedock]
  splitdir=2
  useroptions=268450944
@@ -819,13 +786,13 @@ windowlayout=555
  ny=0
  ncx=0
  ncy=0
- x=125
- y=46
+ x=105
+ y=51
  cx=1157
  cy=621
  rcx=0
  rcy=0
- wsize=6
+ wsize=0
  active=1
  visible=1
  [targetconsolefo]
@@ -913,7 +880,7 @@ windowlayout=555
  [findinfilefo]
  splitdir=0
  useroptions=268451947
- stackedunder=mainfo
+ stackedunder=
  parent=
  mdistate=0
  nx=0
@@ -939,7 +906,7 @@ windowlayout=555
  x=0
  y=0
  cx=205
- cy=516
+ cy=449
  rcx=0
  rcy=0
  [projecttreefo.grid]
@@ -1144,9 +1111,9 @@ windowlayout=555
  ncx=0
  ncy=0
  x=0
- y=580
- cx=1358
- cy=105
+ y=505
+ cx=1147
+ cy=91
  rcx=0
  rcy=0
  [componentstorefo]
@@ -1243,8 +1210,8 @@ windowlayout=555
  ncy=0
  x=0
  y=0
- cx=1358
- cy=58
+ cx=1147
+ cy=50
  rcx=0
  rcy=0
  [debuggerfo.basedock]
@@ -1259,8 +1226,8 @@ windowlayout=555
  ncy=61
  x=0
  y=0
- cx=1358
- cy=61
+ cx=1147
+ cy=53
  rcx=0
  rcy=0
  [debuggerfo.edit_options]
@@ -1308,19 +1275,11 @@ windowlayout=555
  ncy=0
  x=208
  y=0
- cx=1150
- cy=516
+ cx=939
+ cy=449
  rcx=0
  rcy=0
  [sourcefo.files_tab]
- order=7
-  0
-  6
-  1
-  2
-  3
-  4
-  5
  firsttab=0
  index=0
  [confideufo.usedefaulteditoroptions]
@@ -1329,7 +1288,7 @@ windowlayout=555
  irqoff=0
  splitdir=0
  useroptions=268451947
- stackedunder=findinfilefo
+ stackedunder=mainfo
  parent=
  mdistate=0
  nx=0
@@ -1356,9 +1315,9 @@ windowlayout=555
  ncx=0
  ncy=0
  x=0
- y=61
- cx=1358
- cy=516
+ y=53
+ cx=1147
+ cy=449
  rcx=0
  rcy=0
 [targetconsole]

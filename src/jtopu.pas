@@ -3,23 +3,8 @@
 
 unit jtopu;
 
- // jtopu was adapted for Java from original ptopu of fpc.
-{
-    This file is part of the Free Pascal run time library.
-    Copyright (c) 1999-2000 by Michael Van Canneyt, member of
-    the Free Pascal development team
-
-    Pascal Pretty-Printer object implementation
-
-    See the file COPYING.FPC, included in this distribution,
-    for details about the copyright.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
- **********************************************************************}
-{
+ { jtopu was adapted for Java from original ptopu of fpc.}
+ {
  This unit is based heavily on the code by
 
  Author:  Peter Grogono
