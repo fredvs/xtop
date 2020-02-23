@@ -31,7 +31,7 @@ opencomment { or (*
 closecomment } or *)
 semicolon ;
 colon :
-comma ,  :// added in xtop version
+comma ,       // added in xtop version
 equals =
 openparen [
 closeparen ]
