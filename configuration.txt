@@ -1,8 +1,8 @@
-Configuration of ptop.
+Configuration of ptop/jtop.
 
 Structure
 
-The structure of a ptop configuration file is a simple building block repeated several (60-70) times, once for each pascal keyword known to the ptop program. (see the default configuration file or ptopu.pp source to find out which keywords are known)
+The structure of a ptop/jtop configuration file is a simple building block repeated several (60-70) times, once for each pascal keyword known to the ptop program. (see the default configuration file or ptopu.pp source to find out which keywords are known)
 
 The basic building block of the configuration file consists out of one, two or three lines, describing how ptop should react on a certain keyword. First a line without square brackets with the following format:
 
