@@ -54,7 +54,8 @@ type
     writeLn('jtop -g ofile');
     writeLn('     generate default options file');
     writeLn('jtop -h : This help');
-    terminate;
+    ExitCode := ECode;
+    Terminate;
   end;
 
   procedure Tjtop.Genopts;
