@@ -66,10 +66,10 @@ finddialog=8
  value=0
  [finddialogfo]
  stackedunder=
- x=319
- y=205
- cx=312
- cy=114
+ x=937
+ y=131
+ cx=300
+ cy=90
 replacedialog=16
  [replacedialogfo.promptonreplace]
  value=1
@@ -197,7 +197,7 @@ options=114
  firsttab=0
  index=2
  [projectoptionsfo]
- stackedunder=
+ stackedunder=finddialogfo
  x=177
  y=77
  cx=839
@@ -445,7 +445,7 @@ makeoptionson=5
  4095
  4095
  4095
- 62
+ 63
  63
 compilerusedon=29
  4091
@@ -737,8 +737,9 @@ envvarons=0
 [edit]
 hintwidth=0
 hintheight=0
-finddtext=usage
-findhistory=10
+finddtext=halt
+findhistory=11
+ halt
  usage
  us
  array
@@ -750,18 +751,23 @@ findhistory=10
  openparen
  ,capital
 findoptions=1
-editpos=2
- 0,124
- 0,4
+editpos=3
+ 50,111
+ 0,-1073741823
+ 0,97
 bookmarks0=0
 bookmarks1=0
-sourcefiles=2
+bookmarks2=0
+sourcefiles=3
  ${PROJECTDIR}/ptop.pas
  ${PROJECTDIR}/ptopu.pas
-relpaths=2
+ ${PROJECTDIR}/jtop.pas
+relpaths=3
  ptop.pas
  ptopu.pas
-ismoduletexts=2
+ jtop.pas
+ismoduletexts=3
+ 0
  0
  0
 modules=0
@@ -769,10 +775,14 @@ moduleoptions=0
 visiblemodules=0
 nomenumodules=0
 [sourcefo.files_tab]
+order=3
+ 0
+ 2
+ 1
 firsttab=0
 index=0
 [layout]
-windowlayout=547
+windowlayout=581
  [mainfo.basedock]
  splitdir=2
  useroptions=268450944
@@ -812,7 +822,7 @@ windowlayout=547
  rcy=0
  wsize=0
  active=0
- visible=0
+ visible=1
  [threadsfo]
  splitdir=0
  useroptions=268451945
@@ -834,7 +844,7 @@ windowlayout=547
  [memoryfo]
  splitdir=0
  useroptions=268451963
- stackedunder=dialogfilesfo
+ stackedunder=about_form
  parent=
  mdistate=0
  nx=0
@@ -1222,8 +1232,8 @@ windowlayout=547
  mdistate=0
  nx=0
  ny=0
- ncx=1358
- ncy=61
+ ncx=1147
+ ncy=53
  x=0
  y=0
  cx=1147
@@ -1238,19 +1248,48 @@ windowlayout=547
  value=Pascal
  [debuggerfo.file_history]
  value=/home/fred/xtop/src/ptop.pas
- history=20
+ history=50
+  /home/fred/xtop/src/jtop.pas
+  /home/fred/ideu/src/mseintegerenter.pas
+  /home/fred/mseide-msegui/lib/common/dialogs/mseintegerenter.mfm
   /home/fred/xtop/src/ptop.pas
-  /home/fred/fptop/ptopu.pas
+  /home/fred/ideu/src/procedurelistform.pas
+  /home/fred/mseide-msegui/apps/ide/procedurelistform.pas
+  /home/fred/mseide-msegui/apps/ide/sourcepage.pas
+  /home/fred/ideu_bin/ideu_1.9.8_linux64/syntaxdefs/python.sdef
+  /home/fred/ideu_bin/ideu_1.9.8_linux64/syntaxdefs/pascal2.sdef
+  /home/fred/ideu_bin/ideu_1.9.8_linux64/syntaxdefs/mselang.sdef
+  /home/fred/ideu_bin/ideu_1.9.8_linux64/syntaxdefs/pascal.sdef
+  /home/fred/ideu_bin/ideu_1.9.8_linux64/syntaxdefs/pascal_dark.sdef
+  /home/fred/ideu_bin/ideu_1.9.8_linux64/syntaxdefs/pascal_solarized.sdef
+  /home/fred/ideu_bin/ideu_1.9.8_linux64/syntaxdefs/pascal_solarized_dark.sdef
+  /home/fred/ideu/src/dialogfiles.pas
+  /home/fred/ideu_bin/ideu_1.9.8_linux64/syntaxdefs/pascal_ideu.sdef
+  /home/fred/mseide-msegui/lib/common/designutils/msesyntaxpainter.pas
+  /home/fred/mseide-msegui/apps/ide/syntaxdefs/pascal_solarized_dark.sdef
+  /home/fred/ideu/src/msesyntaxpainter.pas
+  /home/fred/ideu/src/syntaxdefs/pascal.sdef
+  /home/fred/ptoptest/sourcepage.pas
+  /home/fred/ideu/src/
+  /home/fred/ideu/src/beauty.pas
+  /home/fred/ideu/src/aboutform.pas
   /home/fred/ideu_bin/ideu_1.9.8_linux64/plugin/ptop/ptop.cfg
+  /home/fred/ptoptest/main.pas
+  /home/fred/ideu/src/mPasLex.pas
+  /home/fred/fptop/src/ptop.cfg
+  /home/fred/fptop/src/test.java
+  /home/fred/fptop/src/ptopu.pas
+  /home/fred/fptop/src/jtopu.pas
+  /home/fred/fptop/src/jtop.pas
+  /home/fred/fptop/src/ptop.pas
+  /home/fred/fptop/ptopu.pas
   /home/fred/fptop/ptopu.pp
   /home/fred/svnfpctrunk/trunk/utils/ptopu.pp
   /home/fred/fptop/ptop.cfg
   /home/fred/ptoptest/uos.pas
-  /home/fred/ptoptest/main.pas
   /home/fred/ptop_fred/ptopu.pp
   /home/fred/ideu/src/plugmanager.pas
   /home/fred/ideu/src/confideu.pas
-  /home/fred/ideu/src/beauty.pas
   /home/fred/eschecs_mse_argh/logform.pas
   /home/fred/uos/examples/uos.pas
   /home/fred/strumpract/src/uos.pas
@@ -1259,6 +1298,7 @@ windowlayout=547
   /home/fred/ideu/src/plugmanager_ok.pas
   /home/fred/ideu/src/ideusettings.pas
   /home/fred/Downloads/eschecs-console-master/library/tutorial/movelistdemo.pas
+  /home/fred/Downloads/eschecs-console-master/library/tutorial/fendemo.pas
  [debuggerfo.project_options]
  value=1
  [debuggerfo.hints]
@@ -1280,6 +1320,10 @@ windowlayout=547
  rcx=0
  rcy=0
  [sourcefo.files_tab]
+ order=3
+  0
+  2
+  1
  firsttab=0
  index=0
  [confideufo.usedefaulteditoroptions]
@@ -1288,7 +1332,7 @@ windowlayout=547
  irqoff=0
  splitdir=0
  useroptions=268451947
- stackedunder=mainfo
+ stackedunder=targetconsolefo
  parent=
  mdistate=0
  nx=0

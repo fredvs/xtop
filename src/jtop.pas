@@ -97,7 +97,9 @@ type
     begin
       ConfigFile := GetOptionValue('g', '');
       GenOpts;
-      halt(0);
+      // halt(0);
+      ExitCode := 0; // this change instead of halt(0);
+      Terminate;    // this change instead of halt(0);
     end;
     ConfigFile := GetOptionValue('c', '');
     BeVerbose  := HasOption('v');
