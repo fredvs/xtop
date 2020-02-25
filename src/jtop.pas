@@ -16,10 +16,11 @@ uses
   BufStream;
 
 resourcestring
-  Version   = 'Version 1.0';
-  ATitle    = 'JToP';
-  Copyright = 'Copyright (c) 1999-2020 by the Free Pascal Development Team and FredvS';
-  SErrNoInputOutput = 'No input and output file given';
+  Version      = 'Version 1.0';
+  ATitle       = 'JToP';
+  Copyright    = 'Copyright (c) 1999-2005 by the Free Pascal Development Team and FredvS in 2020.';
+  SErrNoOutput = 'No output file given';
+  SErrNoInput  = 'Input file does not exist!';
 
 type
   Tjtop = class(TCustomApplication)
@@ -98,7 +99,7 @@ type
       ConfigFile := GetOptionValue('g', '');
       GenOpts;
       // halt(0);
-      ExitCode := 0; // this change instead of halt(0);
+      ExitCode   := 0; // this change instead of halt(0);
       Terminate;    // this change instead of halt(0);
     end;
     ConfigFile := GetOptionValue('c', '');
@@ -125,11 +126,17 @@ type
 
     if (ParamCount > 1) then
     begin
-      if (Length(InfileName) = 0) or (Length(OutFileName) = 0) then
+      if (not fileexists(InfileName)) then
       begin
-        writeLn(stderr, SErrNoInputOutput);
+        writeLn(stderr, SErrNoInput);
+        Usage(1);
+      end
+      else if (Length(OutFileName) = 0) then
+      begin
+        Writeln(stderr, SErrNoOutput);
         Usage(1);
       end;
+
       Ins := TMemoryStream.Create;
       try
         F := TFileStream.Create(InFileName, fmOpenRead);

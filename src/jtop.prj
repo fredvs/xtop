@@ -716,11 +716,11 @@ findhistory=16
  ,capital
 findoptions=1
 editpos=6
- 0,6
- 0,59
  0,-1073741823
  0,-1073741823
  0,-1073741823
+ 0,-1073741823
+ 0,0
  0,-1073741823
 bookmarks0=0
 bookmarks1=0
@@ -740,7 +740,7 @@ relpaths=6
  jtopu.pas
  ptopu.pas
  test.java
- ideu_bin/ideu_1.9.8_linux64/plugin/ptop/ptop.cfg
+ ../ideu_bin/ideu_1.9.8_linux64/plugin/ptop/ptop.cfg
  ptop.pas
 ismoduletexts=6
  0
@@ -756,11 +756,11 @@ nomenumodules=0
 [sourcefo.files_tab]
 order=6
  0
- 4
- 1
- 5
  3
+ 4
  2
+ 5
+ 1
 firsttab=0
 index=2
 [layout]
@@ -778,8 +778,8 @@ windowlayout=554
  ny=0
  ncx=0
  ncy=0
- x=96
- y=103
+ x=74
+ y=51
  cx=1157
  cy=621
  rcx=0
@@ -826,7 +826,7 @@ windowlayout=554
  [memoryfo]
  splitdir=0
  useroptions=268451963
- stackedunder=dialogfilesfo
+ stackedunder=mainfo
  parent=
  mdistate=0
  nx=0
@@ -969,7 +969,7 @@ windowlayout=554
  [breakpointsfo]
  splitdir=0
  useroptions=268451947
- stackedunder=memoryfo
+ stackedunder=about_form
  parent=
  mdistate=0
  nx=0
@@ -1229,8 +1229,9 @@ windowlayout=554
  [debuggerfo.edit_compiler]
  value=Pascal
  [debuggerfo.file_history]
- value=/home/fred/xtop/src/jtopu.pas
+ value=/home/fred/ideu_bin/ideu_1.9.8_linux64/plugin/ptop/ptop.cfg
  history=20
+  /home/fred/ideu_bin/ideu_1.9.8_linux64/plugin/ptop/ptop.cfg
   /home/fred/xtop/src/jtop.pas
   /home/fred/ideu/src/procedurelistform.pas
   /home/fred/mseide-msegui/apps/ide/procedurelistform.pas
@@ -1250,7 +1251,6 @@ windowlayout=554
   /home/fred/ideu/src/syntaxdefs/pascal.sdef
   /home/fred/ptoptest/sourcepage.pas
   /home/fred/ideu/src/
-  /home/fred/ideu/src/beauty.pas
  [debuggerfo.project_options]
  value=1
  [debuggerfo.hints]
@@ -1274,11 +1274,11 @@ windowlayout=554
  [sourcefo.files_tab]
  order=6
   0
-  4
-  1
-  5
   3
+  4
   2
+  5
+  1
  firsttab=0
  index=2
  [confideufo.usedefaulteditoroptions]
@@ -1287,7 +1287,7 @@ windowlayout=554
  irqoff=0
  splitdir=0
  useroptions=268451947
- stackedunder=mainfo
+ stackedunder=memoryfo
  parent=
  mdistate=0
  nx=0

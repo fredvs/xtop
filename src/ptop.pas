@@ -19,22 +19,23 @@ program PtoP;
 
  **********************************************************************}
 
-uses 
-SysUtils, 
-Classes, 
-PtoPu, 
-CustApp, 
+uses
+SysUtils,
+Classes,
+PtoPu,
+CustApp,
 BufStream;
 
 resourcestring
 Version   = 'Version 1.2';
 ATitle    = 'PToP';
-Copyright = 'Copyright (c) 1999-2005 by the Free Pascal Development Team';
-SErrNoInputOutput = 'No input and output file given';
+Copyright = 'Copyright (c) 1999-2005 by the Free Pascal Development Team. Some update by FredvS 2020.';
+SErrNoOutput = 'No output file given';
+SErrNoInput = 'Input file does not exist!';
 
-type 
+type
   TPToP = class(TCustomApplication)
-    private 
+    private
       Infilename, OutFileName, ConfigFile: string;
       BeVerbose: Boolean;
       TheIndent, TheBufSize, TheLineSize: integer;
@@ -42,7 +43,7 @@ type
       procedure GenOpts;
       procedure ProcessOpts;
       procedure DoVerbose(Sender: TObject; Const Msg: String);
-    public 
+    public
       procedure DoRun;
       override;
   end;
@@ -70,7 +71,7 @@ begin
 end;
 
 procedure TPToP.Genopts;
-var 
+var
   S: TFileStream;
 begin
   S := TFileStream.Create(ConfigFile, fmCreate);
@@ -82,7 +83,7 @@ end;
 end;
 
 procedure TPToP.ProcessOpts;
-var 
+var
   S: string;
 begin
     { Set defaults }
@@ -121,7 +122,7 @@ begin
 end; { Of ProcessOpts }
 
 procedure TPToP.DoRun;
-var 
+var
   F, InS, OutS, cfgS: TSTream;
   PPrinter: TPrettyPrinter;
 begin
@@ -135,11 +136,17 @@ begin
 
   if (ParamCount > 1) then
     begin
-      if (Length(InfileName) = 0) or (Length(OutFileName) = 0) then
+      if (not fileexists(InfileName)) then
         begin
-          writeLn(stderr, SErrNoInputOutput);
+          writeLn(stderr, SErrNoInput);
           Usage(1);
-        end;
+        end else
+       if (Length(OutFileName) = 0) then
+    begin
+      Writeln(stderr, SErrNoOutput);
+      Usage(1);
+    end;
+
       Ins := TMemoryStream.Create;
       try
         F := TFileStream.Create(InFileName, fmOpenRead);
